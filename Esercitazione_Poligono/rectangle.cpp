@@ -2,11 +2,11 @@
 /**
 //    @file		rectangle.cpp
 //    @brief	Implementation file for class rectangle
-//    @author	Nicolò Busi S5209833
+//    @author	Nicolo' Busi S5209833
 */
 //---------------------------------------------------------
 
-constexpr auto DEFAULT_VALUE = 0;;
+
 
 
 #include "rectangle.h"
@@ -18,7 +18,8 @@ constexpr auto DEFAULT_VALUE = 0;;
 #include <math.h>
 #include <string.h>
 
-
+constexpr auto DEFAULT_VALUE = 0;;
+constexpr auto DOUBLE = 2;;
 
 //////////////////////////////////////////////////////////////////////////////
 // fpi
@@ -73,12 +74,12 @@ rectangle::rectangle(float w, float l) {
 
 	cout << "rectangle - Constructor" << endl;
 
-	if (w <= DEFAULT_VALUE)
+	if (w < DEFAULT_VALUE)
 		ErrorMessage("WARNING: rectangle - constructor : width should be > 0");
 	else
 		width = w;
 
-	if (l <= DEFAULT_VALUE)
+	if (l < DEFAULT_VALUE)
 		ErrorMessage("WARNING: rectangle - constructor : lenght should be > 0");
 	else
 		lenght = l;
@@ -173,7 +174,7 @@ bool rectangle::operator ==(rectangle& X)
 /// @param warning string printed on the screen
 
 void rectangle::ErrorMessage(const char* string)
-{
+{	
 	printf("%s\n", string);
 }
 
@@ -278,14 +279,33 @@ float rectangle::GetPerimeter() {
 ///////////////////////////////////////////////////////////////////////////
 // 
 
+/// @brief computing rectangle area
+/// @return rectangle area
 float rectangle::Area() {
+	if (lenght <= DEFAULT_VALUE || width <= DEFAULT_VALUE)
+		ErrorMessage("WARNING: the geometric shape should have a positive area");
 	return lenght * width;
 }
-float rectangle::Perimeter() {
-	return 2 * (lenght + width);
-}
+///////////////////////////////////////////////////////////////////////////
+// 
 
+/// @brief computing rectangle perimeter
+/// @return rectangle perimeter
+float rectangle::Perimeter() {
+	if (lenght <= DEFAULT_VALUE || width <= DEFAULT_VALUE)
+		ErrorMessage("WARNING: the geometric shape should have both positive dimensions");
+	return DOUBLE * (lenght + width);
+}
+///////////////////////////////////////////////////////////////////////////
+// 
+
+/// @brief simulation of graphic interface
 void rectangle::Draw() {
-	cout << "This is a rectangle with this features:" << endl << "1) lenght = " << lenght << endl << "2) width = " << width << endl
-		<< "3) perimeter = " << Perimeter() << endl << "4) area = " << Area() << endl << endl << endl;
+	cout << "This is a rectangle with this features:" << endl 
+		<< "1) lenght = " << lenght << endl 
+		<< "2) width = " << width << endl
+		<< "3) perimeter = " << Perimeter() << endl 
+		<< "4) area = " << Area() << endl
+		<< endl 
+		<< endl;
 }

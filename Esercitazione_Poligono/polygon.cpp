@@ -1,14 +1,61 @@
+//---------------------------------------------------------
+/**
+//    @file		rectangle.cpp
+//    @brief	Implementation file for class rectangle
+//    @author	Nicolo' Busi S5209833 & Leonardo Motta S4952213
+*/
+//---------------------------------------------------------
+
+
 #include "polygon.h"
+
+constexpr auto DEFAULT_VALUE = 0;;
+
+//////////////////////////////////////////////////////////////////////////////
+// fpi
+// memory debug, place after includes
+
+#ifdef DBGMEM_CRT
+#undef new
+#define new new(_NORMAL_BLOCK,__FILE__,__LINE__)
+#endif // DBGMEM_CRT
+
+
+/************************** GLOBAL FUNCTIONS AND VARIABLES ******************/
+
+///////////////////////////////////////////////////////////////////////////
+// Print operator
+ostream& operator << (ostream& o, Polygon& X)
+{
+
+	return o;
+}
+
+///////////////////////////////////////////////////////////////////////////
+//Input operator
+istream& operator >> (istream& i, Polygon& X)
+{
+
+	return i;
+}
+
+/************************** MEMBER FUNCTIONS AND VARIABLES ******************/
+
+///////////////////////////////////////////////////////////////////////////
+// Default Constructor
 
 /// @brief default constructor 
 Polygon::Polygon() {
 
 	cout << "Polygon - constructor - default" << endl;
 
-	area = 0.;
-	perimeter = 0.;
+	area = DEFAULT_VALUE;
+	perimeter = DEFAULT_VALUE;
 
 } 
+
+///////////////////////////////////////////////////////////////////////////
+// Copy Constructor
 
 /// @brief copy constructor 
 /// @param r reference to the object that should be copied 
@@ -19,6 +66,9 @@ Polygon::Polygon(const Polygon &p) {
 	Init(p);
 }
 
+///////////////////////////////////////////////////////////////////////////
+// Destructor
+
 /// @brief destructor
 Polygon::~Polygon() {
 
@@ -26,6 +76,38 @@ Polygon::~Polygon() {
 	Reset();
 
 }
+
+///////////////////////////////////////////////////////////////////////////
+// Init default initializer
+
+/// @brief default initialization of the object
+void Polygon::Init() {
+	Reset();
+	perimeter = DEFAULT_VALUE;
+	area = DEFAULT_VALUE;
+}
+
+///////////////////////////////////////////////////////////////////////////
+// Init copy initializer
+
+/// @brief initialization of the object as a copy of an object 
+/// @param r reference to the object that should be copied 
+void Polygon::Init(const Polygon& p) {
+	Reset();
+
+}
+
+///////////////////////////////////////////////////////////////////////////
+// Object eraser
+
+/// @brief total reset of the object  
+void Polygon::Reset() {
+	perimeter = DEFAULT_VALUE;
+	area = DEFAULT_VALUE;
+}
+
+///////////////////////////////////////////////////////////////////////////
+// Overloading of assignment operator
 
 /// @brief overload of operator = 
 /// @param p reference to the object on the right side of the operator 
@@ -36,47 +118,53 @@ Polygon& Polygon::operator=(const Polygon &p) {
 	
 }
 
+///////////////////////////////////////////////////////////////////////////
+// Overloading of comparison operator
+
 /// @brief overload of operator == 
 /// @param p reference to the object on the right side of the operator 
 /// @return true if the two objects have the same width and the same length  
 bool Polygon::operator==(const Polygon &r) { 
 	return false;
 }
-///////////////////////////////////////////////////////////////////////////
-// Print operator
-ostream& operator << (ostream& o, Polygon& X)
-{
-
-	return o;
-}
 
 ///////////////////////////////////////////////////////////////////////////
-istream& operator >> (istream& i, Polygon& X)
-{
+// Error messaging routine
 
-	return i;
+/// @brief write an error message 
+/// @param string message to be printed
+void Polygon::ErrorMessage(const char* string) {
+
+	cout << endl << "ERROR -- Polygon --";
+	cout << string << endl;
+
 }
 
-/// @brief default initialization of the object
-void Polygon::Init() {
-	Reset();
-	perimeter = 0.;
-	area = 0.;
+///////////////////////////////////////////////////////////////////////////
+// Debug routine
+
+/// @brief for debugging: all about the object
+void Polygon::Dump() {
+
+	cout << endl;
+	cout << "Perimeter = " << GetPerimeter() << endl;
+	cout << "Area = " << GetArea() << endl;
+	cout << endl << flush;
+
 }
 
 
-/// @brief initialization of the object as a copy of an object 
-/// @param r reference to the object that should be copied 
-void Polygon::Init(const Polygon &p) {
-	Reset();
-	
+/// @brief write a warning message 
+/// @param string message to be printed
+void Polygon::WarningMessage(const char* string) {
+
+	cout << endl << "WARNING -- Polygon --";
+	cout << string << endl;
+
 }
 
-/// @brief total reset of the object  
-void Polygon::Reset() {
-	perimeter = 0.;
-	area = 0.;
-}
+/************************** ACCESS FUNCTIONS ******************/
+
 
 /// @brief get the area of the object
 /// @return area 
@@ -96,32 +184,6 @@ float Polygon::GetPerimeter() {
 
 }
 
-/// @brief write an error message 
-/// @param string message to be printed
-void Polygon::ErrorMessage(const char *string) {
-	
-	cout << endl << "ERROR -- Polygon --";
-	cout << string << endl;
-
-}
-
-/// @brief write a warning message 
-/// @param string message to be printed
-void Polygon::WarningMessage(const char *string) {
-	
-	cout << endl << "WARNING -- Polygon --";
-	cout << string << endl;
-
-}
 
 
-/// @brief for debugging: all about the object
-void Polygon::Dump() {
-	
-	cout << endl;
-	cout << "Perimeter = " << GetPerimeter() << endl;
-	cout << "Area = " << GetArea() << endl;
-	cout << endl << flush;
-
-}
 

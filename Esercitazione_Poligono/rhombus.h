@@ -2,7 +2,7 @@
 /**
 //    @file		rhombus.h
 //    @brief	Header file for CLASS rhombus
-//    @author	Nicolò Busi	S5209833 & Leonardo Motta S4952213
+//    @author	Nicolo' Busi	S5209833 & Leonardo Motta S4952213
 */
 //---------------------------------------------------------
 
@@ -20,7 +20,7 @@
 using namespace std;
 /**
 @class rhombus
-@brief the class rhombus is a poligonal figure with equal sides and perpendicolar diagonals
+@brief the class rhombus is a poligonal figure with 4 equal sides and perpendicolar diagonals
 
 */
 class rhombus :public Polygon
@@ -83,6 +83,7 @@ public:
 	virtual float Area();
 	virtual float Perimeter();
 
+	///DRAWING
 	virtual void Draw();
 
 	/// SET FUNCTIONS

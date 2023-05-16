@@ -2,7 +2,7 @@
 /**
 //    @file		isoTriangle.h
 //    @brief	Header file for CLASS isoTriangle
-//    @author	Nicolò Busi	S5209833
+//    @author	Nicolo' Busi	S5209833 & Leonardo Motta S4952213
 */
 //---------------------------------------------------------
 
@@ -15,12 +15,12 @@
 #include <math.h>
 #include <string.h>
 
-
 #include "polygon.h"
+
 using namespace std;
 /**
 @class isoTriangle
-@brief isoTriangle is a poligonal figure with equal sides and perpendicolar diagonals
+@brief isoTriangle is a poligonal figure with 3 sides, with the obliqual ones equal
 
 */
 class isoTriangle :public Polygon
@@ -77,11 +77,21 @@ public:
 	void ErrorMessage(const char* string);
 	//@}
 
-	// ACCESS FUNCTIONS
+	/// @name ACCESS FUNCTIONS
+	/// @{
+	
+	virtual float Area();
+	virtual float Perimeter();
+
+	///DRAWING
+	virtual void Draw();
+
+	/// SET FUNCTIONS
 	void SetDim(float b, float h);
 	void SetBase(float b);
 	void SetHeight(float h);
 
+	/// GET FUNCTIONS
 	void GetDim(float& b, float& h);
 	float GetBase();
 	float GetHeight();
@@ -89,10 +99,7 @@ public:
 	float GetArea();
 	float GetPerimeter();
 
-	virtual float Area();
-	virtual float Perimeter();
 
-	virtual void Draw();
 
 	/// @name DEBUG and SERIALIZATION
 	/// @{

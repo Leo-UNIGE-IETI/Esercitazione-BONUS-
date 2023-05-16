@@ -2,7 +2,7 @@
 /**
 //    @file		rectangle.h
 //    @brief	Header file for CLASS rectangle
-//    @author	Nicolò Busi	S5209833 & Leonardo Motta S4952213
+//    @author	Nicolo' Busi	S5209833 & Leonardo Motta S4952213
 */
 //---------------------------------------------------------
 
@@ -20,7 +20,7 @@
 using namespace std;
 /**
 @class rectangle
-@brief the class rectangle is a poligonal figure with four sides and all the internal angles of 90 degrees 
+@brief the class rectangle is a poligonal figure with 4 sides and all the internal angles of 90 degrees 
 
 */
 class rectangle :public Polygon
@@ -82,6 +82,7 @@ public:
 	virtual float Area();
 	virtual float Perimeter();
 
+	///DRAWING
 	virtual void Draw();
 
 	/// SET FUNCTIONS

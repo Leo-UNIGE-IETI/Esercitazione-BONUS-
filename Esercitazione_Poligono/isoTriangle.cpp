@@ -1,14 +1,13 @@
 //---------------------------------------------------------
 /**
-//    @file		rhombus.cpp
-//    @brief	Implementation file for class rhombus
-//    @author	Nicolo' Busi S5209833
+//    @file		isoTriangle.cpp
+//    @brief	Implementation file for class isoTriangle
+//    @author	Nicolo' Busi S52DEFAULT_VALUE9833
 */
 //---------------------------------------------------------
 
 
-
-#include "rhombus.h"
+#include "isoTriangle.h"
 
 
 #include <iostream>
@@ -19,8 +18,9 @@
 
 constexpr auto DEFAULT_VALUE = 0;;
 constexpr auto SQUARE = 2;;
-constexpr auto HALF = 0.5;;
 constexpr auto DOUBLE = 2;;
+constexpr auto HALF = 0.5;;
+
 //////////////////////////////////////////////////////////////////////////////
 // fpi
 // memory debug, place after includes
@@ -35,14 +35,15 @@ constexpr auto DOUBLE = 2;;
 
 ///////////////////////////////////////////////////////////////////////////
 // Print operator
-ostream& operator << (ostream& o, rhombus& X)
+ostream& operator << (ostream& o, isoTriangle& X)
 {
 
 	return o;
 }
 
 ///////////////////////////////////////////////////////////////////////////
-istream& operator >> (istream& i, rhombus& X)
+// Input operator
+istream& operator >> (istream& i, isoTriangle& X)
 {
 
 	return i;
@@ -54,37 +55,37 @@ istream& operator >> (istream& i, rhombus& X)
 // Default Constructor
 
 /// @brief default constructor 
-rhombus::rhombus()
+isoTriangle::isoTriangle()
 {
-	cout << "Rhombus - Constructor - Default" << endl;
+	cout << "isoTriangle - Constructor - Default" << endl;
 	Init();
-	
+
 }
 
 ///////////////////////////////////////////////////////////////////////////
 // Constructor
 
-/// @brief constructor which also check if the value entered is >= 0
-/// @param dH diagH of the rhombus
-/// @param dV diagV of the rhombus
-rhombus:: rhombus(float dH, float dV) {
+/// @brief constructor which also check if the value entered is >= DEFAULT_VALUE
+/// @param b base of the isoTriangle
+/// @param h height of the isoTriangle
+isoTriangle::isoTriangle(float b, float h) {
 
-	diagH = DEFAULT_VALUE;
-	diagV = DEFAULT_VALUE;
+	base = DEFAULT_VALUE;
+	height = DEFAULT_VALUE;
 
-	cout << "Rhombus - Constructor" << endl;
+	cout << "isoTriangle - Constructor" << endl;
 
-	if (dH < DEFAULT_VALUE) 
-		ErrorMessage("WARNING: Rhombus - constructor : diagH should be > 0");
+	if (b < DEFAULT_VALUE)
+		ErrorMessage("WARNING: isoTriangle - constructor : base should be > DEFAULT_VALUE");
 	else
-		diagH = dH;
-	
-	if (dV < DEFAULT_VALUE)
-		ErrorMessage("WARNING: Rhombus - constructor : diagV should be > 0");
+		base = b;
+
+	if (h < DEFAULT_VALUE)
+		ErrorMessage("WARNING: isoTriangle - constructor : height should be > DEFAULT_VALUE");
 	else
-		diagV = dV;
-		
-	}
+		height = h;
+
+}
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -92,9 +93,9 @@ rhombus:: rhombus(float dH, float dV) {
 
 /// @brief copy constructor 
 /// @param reference to the object that should be copied 
-rhombus::rhombus(rhombus& X)
+isoTriangle::isoTriangle(isoTriangle& X)
 {
-	cout << "Rhombus - Copy Constructor" << endl;
+	cout << "isoTriangle - Copy Constructor" << endl;
 	Init(X);
 }
 
@@ -102,9 +103,9 @@ rhombus::rhombus(rhombus& X)
 // Destructor
 
 /// @brief destructor 
-rhombus::~rhombus()
+isoTriangle::~isoTriangle()
 {
-	cout << "Rhombus - Destructor" << endl;
+	cout << "isoTriangle - Destructor" << endl;
 	Reset();
 }
 
@@ -112,10 +113,10 @@ rhombus::~rhombus()
 // Init default initializer
 
 /// @brief init default initializer of the object
-void rhombus::Init()
+void isoTriangle::Init()
 {
-	diagH = DEFAULT_VALUE;
-	diagV = DEFAULT_VALUE;
+	base = DEFAULT_VALUE;
+	height = DEFAULT_VALUE;
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -123,21 +124,21 @@ void rhombus::Init()
 
 /// @brief init copy initializer of the object
 /// @param reference to the object that should be copied 
-void rhombus::Init(rhombus& X)
+void isoTriangle::Init(isoTriangle& X)
 {
 	Reset();
-	diagH = X.diagH;
-	diagV = X.diagV;
+	base = X.base;
+	height = X.height;
 }
 
 ///////////////////////////////////////////////////////////////////////////
 // Object eraser
 
 /// @brief object's eraser
-void rhombus::Reset()
+void isoTriangle::Reset()
 {
-	diagH = DEFAULT_VALUE;
-	diagV = DEFAULT_VALUE;
+	base = DEFAULT_VALUE;
+	height = DEFAULT_VALUE;
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -146,7 +147,7 @@ void rhombus::Reset()
 /// @brief overload of operator = 
 /// @param reference to the object on the right side of the operator 
 /// @return reference to the object on the left side of the operator
-rhombus& rhombus::operator =(rhombus& X)
+isoTriangle& isoTriangle::operator =(isoTriangle& X)
 {
 	Reset();
 	Init(X);
@@ -158,10 +159,10 @@ rhombus& rhombus::operator =(rhombus& X)
 
 /// @brief overload of operator == 
 /// @param reference to the object on the right side of the operator 
-/// @return true if the two objects have the same diagH and the same diagV
-bool rhombus::operator ==( rhombus& X)
+/// @return true if the two objects have the same base and the same height
+bool isoTriangle::operator ==(isoTriangle& X)
 {
-	if (X.diagH == diagH && X.diagV == diagV)
+	if (X.base == base && X.height == height)
 		return true;
 
 	return false;
@@ -173,7 +174,7 @@ bool rhombus::operator ==( rhombus& X)
 /// @brief warning routine
 /// @param warning string printed on the screen
 
-void rhombus::ErrorMessage(const char* string)
+void isoTriangle::ErrorMessage(const char* string)
 {
 	printf("%s\n", string);
 }
@@ -182,149 +183,149 @@ void rhombus::ErrorMessage(const char* string)
 // Debug routine
 
 /// @brief It shows the programm status
-void rhombus::Dump()
+void isoTriangle::Dump()
 {
-	cout << "Horizontal Diagonal = " << diagH << endl;
-	cout << "Vertical DIagonal = " << diagV << endl;
-	cout << "Side = " << Side(diagH, diagV) << endl;
+	cout << "base = " << base << endl;
+	cout << "height = " << height << endl;
+	cout << "side = " << Side(base, height) << endl;
 }
 
 /************************** ACCESS FUNCTIONS ******************/
 
 /// @brief set the side of the object
-/// @param dH diagH
-/// @param dV diagV
+/// @param b base
+/// @param h height
 /// @return side
-double rhombus::Side(float dH, float dV) {
-	
-	return sqrt(pow(dH*HALF, SQUARE) + pow(dV*HALF, SQUARE));
+double isoTriangle::Side(float b, float h) {
+
+	return sqrt(pow(b * HALF, SQUARE) + pow(h, SQUARE));
 
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
-/// @brief set diagH and diagV of the object
-/// @param dH diagH 
-/// @param dV diagV
-void rhombus::SetDim(float dH, float dV) {
+/// @brief set base and height of the object
+/// @param b base 
+/// @param h height
+void isoTriangle::SetDim(float b, float h) {
 
-	SetDiagH(dH);
-	SetDiagV(dV);
+	SetBase(b);
+	SetHeight(h);
 
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
-/// @brief set diagH of the object
-/// @param dV diagH
-void rhombus::SetDiagH(float dH) {
+/// @brief set base of the object
+/// @param b base
+void isoTriangle::SetBase(float b) {
 
-	if (dH < DEFAULT_VALUE) {
-		ErrorMessage("Rhombus - SetDiagH: diagH should be > 0");
+	if (b < DEFAULT_VALUE) {
+		ErrorMessage("isoTriangle - SetBase: base should be > 0");
 		return;
 	}
 
-	diagH = dH;
-	
+	base = b;
+
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
-/// @brief set diagV of the object
-/// @param dV diagV
-void rhombus::SetDiagV(float dV) {
+/// @brief set height of the object
+/// @param h height
+void isoTriangle::SetHeight(float h) {
 
-	if (dV < DEFAULT_VALUE) {
-		ErrorMessage("Rhombus - SetDiagH: diagH should be > 0");
+	if (h < DEFAULT_VALUE) {
+		ErrorMessage("isoTriangle - SetHeight: height should be > 0");
 		return;
 	}
 
-	diagV = dV;
+	height = h;
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
 
-/// @brief get diagH and diagVof the object
-/// @param dH diagH
-/// @param dV diagV
-void rhombus::GetDim(float& dH, float& dV) {
-	
-	dH = diagH;
-	dV = diagV;
+/// @brief get base and height of the object
+/// @param b base
+/// @param h height
+void isoTriangle::GetDim(float& b, float& h) {
+
+	b = base;
+	h = height;
 
 	return;
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
-/// @brief get diagH of the object
-/// @return diagH 
-float rhombus::GetDiagH() {
-	return diagH;
+/// @brief get base of the object
+/// @return base 
+float isoTriangle::GetBase() {
+	return base;
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
-/// @brief get diagV of the object
-/// @return diagV 
-float rhombus::GetDiagV() {
-	return diagV;
+/// @brief get height of the object
+/// @return height 
+float isoTriangle::GetHeight() {
+	return height;
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
 /// @brief get the side of the object
 /// @return side 
-float rhombus::GetSide() {
-	return Side(diagH, diagV);
+float isoTriangle::GetSide() {
+	return Side(base, height);
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
 /// @brief get the area of the object
-/// @return area of the rhombus
-float rhombus::GetArea() {
+/// @return area of the isoTriangle
+float isoTriangle::GetArea() {
 	return Area();
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
 /// @brief get the perimeter of the object
-/// @return perimeter of the rhombus
-float rhombus::GetPerimeter() {
+/// @return perimeter of the isoTriangle
+float isoTriangle::GetPerimeter() {
 	return Perimeter();
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
-/// @brief computing rhombus area
-/// @return rhombus area
-float rhombus::Area() {
-	if (diagH <= DEFAULT_VALUE || diagV <= DEFAULT_VALUE)
+/// @brief computing object area
+/// @return object area
+float isoTriangle::Area() {
+	if (base <= DEFAULT_VALUE || height <= DEFAULT_VALUE)
 		ErrorMessage("WARNING: the geometric shape should have a positive area");
-	return (diagH * diagV) * HALF;
+	return (base * height) * HALF;
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
-/// @brief computing rhombus perimeter
-/// @return rhombus perimeter
-float rhombus::Perimeter() {
-	if (diagH <= DEFAULT_VALUE || diagV <= DEFAULT_VALUE)
+/// @brief computing object perimeter
+/// @return object perimeter
+float isoTriangle::Perimeter() {
+	if (base <= DEFAULT_VALUE || height <= DEFAULT_VALUE)
 		ErrorMessage("WARNING: the geometric shape should have both positive dimensions");
-	return (Side(diagH,diagV) * DOUBLE) * DOUBLE ; 
+	return (Side(base, height) * DOUBLE) + base;
 }
 ///////////////////////////////////////////////////////////////////////////
 // 
 
 /// @brief simulation of graphic interface
-void rhombus::Draw() {
-	cout << "This is a rhombus with this features:" << endl 
-		<< "1) horizontal diagonal = " << diagH << endl 
-		<< "2) vertical diagonal = " << diagV << endl
-		<< "3) side = "<<Side(diagH,diagV)<< endl
-		<<"4) perimeter = " << Perimeter() << endl 
+void isoTriangle::Draw() {
+	cout << "This is a isoTriangle with this features:" << endl 
+		<< "1) base = " << base << endl 
+		<< "2) height = " << height << endl
+		<< "3) side = " << Side(base, height) << endl 
+		<< "4) perimeter = " << Perimeter() << endl 
 		<< "5) area = " << Area() << endl 
 		<< endl 
 		<< endl;
